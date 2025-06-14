@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AP Psychology Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span>
+    <span id="theme-text">Dark</span>
+  </div>
+  
+  <header>
+    <h1>🧠 AP Psychology Quiz</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="notes.html">Notes</a>
+      <a href="quiz.html" class="active">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>AP Psychology Practice Quiz</h2>
+      <p>Test your knowledge across all AP Psychology units!</p>
+      
+      <div id="quiz-container">
+        <div id="question-counter">Question 1 of 25</div>
+        <div id="question"></div>
+        <div id="options"></div>
+        <button id="next-btn" onclick="nextQuestion()" style="display: none;">Next Question</button>
+        <button id="restart-btn" onclick="restartQuiz()" style="display: none;">Restart Quiz</button>
+      </div>
+      
+      <div id="result"></div>
+      <div id="score-display" style="display: none;"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Keep studying for your AP Psychology exam! 🧠</p>
+  </footer>
+
+  <script>
+    const questions = [
+      // Unit 1: Biological Bases
+      {
+        question: "Which part of the brain is primarily responsible for fear and emotional processing?",
+        options: ["Cerebellum", "Amygdala", "Hippocampus", "Thalamus"],
+        correct: 1,
+        unit: "Biological Bases"
+      },
+      {
+        question: "What neurotransmitter is associated with reward and motivation?",
+        options: ["Serotonin", "GABA", "Dopamine", "Acetylcholine"],
+        correct: 2,
+        unit: "Biological Bases"
+      },
+      {
+        question: "The myelin sheath serves to:",
+        options: ["Store neurotransmitters", "Speed up neural transmission", "Process emotions", "Filter sensory input"],
+        correct: 1,
+        unit: "Biological Bases"
+      },
+      
+      // Unit 2: Sensation and Perception
+      {
+        question: "Rods in the retina are responsible for:",
+        options: ["Color vision", "Light/dark detection", "Depth perception", "Motion detection"],
+        correct: 1,
+        unit: "Sensation and Perception"
+      },
+      {
+        question: "The Gestalt principle of closure refers to:",
+        options: ["Grouping similar objects", "Completing incomplete figures", "Distinguishing figure from ground", "Organizing by proximity"],
+        correct: 1,
+        unit: "Sensation and Perception"
+      },
+      
+      // Unit 3: Learning
+      {
+        question: "In classical conditioning, the neutral stimulus becomes the:",
+        options: ["Unconditioned stimulus", "Unconditioned response", "Conditioned stimulus", "Conditioned response"],
+        correct: 2,
+        unit: "Learning"
+      },
+      {
+        question: "A variable ratio schedule of reinforcement:",
+        options: ["Provides reinforcement after a set time", "Reinforces every response", "Reinforces after varying numbers of responses", "Never provides reinforcement"],
+        correct: 2,
+        unit: "Learning"
+      },
+      {
+        question: "Albert Bandura is most associated with:",
+        options: ["Classical conditioning", "Operant conditioning", "Observational learning", "Insight learning"],
+        correct: 2,
+        unit: "Learning"
+      },
+      
+      // Unit 4: Cognitive Psychology
+      {
+        question: "Working memory is part of:",
+        options: ["Sensory memory", "Short-term memory", "Long-term memory", "Implicit memory"],
+        correct: 1,
+        unit: "Cognitive Psychology"
+      },
+      {
+        question: "The availability heuristic involves:",
+        options: ["Following step-by-step procedures", "Judging by ease of recall", "Seeking confirming evidence", "Using mental shortcuts"],
+        correct: 1,
+        unit: "Cognitive Psychology"
+      },
+      {
+        question: "Phonemes are:",
+        options: ["Units of meaning", "Smallest units of sound", "Grammar rules", "Sentence structures"],
+        correct: 1,
+        unit: "Cognitive Psychology"
+      },
+      
+      // Unit 5: Developmental Psychology
+      {
+        question: "According to Piaget, the preoperational stage is characterized by:",
+        options: ["Abstract thinking", "Logical reasoning", "Symbolic thinking and egocentrism", "Sensorimotor learning"],
+        correct: 2,
+        unit: "Developmental Psychology"
+      },
+      {
+        question: "Erikson's stage of 'Identity vs. Role Confusion' occurs during:",
+        options: ["Early childhood", "Middle childhood", "Adolescence", "Young adulthood"],
+        correct: 2,
+        unit: "Developmental Psychology"
+      },
+      {
+        question: "Secure attachment is characterized by:",
+        options: ["Extreme clinginess", "Avoidance of closeness", "Comfort with closeness and independence", "Inconsistent behavior"],
+        correct: 2,
+        unit: "Developmental Psychology"
+      },
+      
+      // Unit 6: Personality
+      {
+        question: "According to Freud, the ego operates on the:",
+        options: ["Pleasure principle", "Reality principle", "Moral principle", "Unconscious principle"],
+        correct: 1,
+        unit: "Personality"
+      },
+      {
+        question: "Which of the Big Five personality traits involves emotional instability?",
+        options: ["Openness", "Conscientiousness", "Extraversion", "Neuroticism"],
+        correct: 3,
+        unit: "Personality"
+      },
+      {
+        question: "Carl Rogers emphasized the importance of:",
+        options: ["Defense mechanisms", "Trait theory", "Unconditional positive regard", "Behavioral conditioning"],
+        correct: 2,
+        unit: "Personality"
+      },
+      
+      // Unit 7: Abnormal Psychology
+      {
+        question: "Generalized Anxiety Disorder is characterized by:",
+        options: ["Specific phobias", "Panic attacks", "Persistent, excessive worry", "Compulsive behaviors"],
+        correct: 2,
+        unit: "Abnormal Psychology"
+      },
+      {
+        question: "Positive symptoms of schizophrenia include:",
+        options: ["Flat affect", "Social withdrawal", "Hallucinations and delusions", "Lack of motivation"],
+        correct: 2,
+        unit: "Abnormal Psychology"
+      },
+      {
+        question: "Bipolar disorder involves:",
+        options: ["Constant depression", "Alternating manic and depressive episodes", "Multiple personalities", "Obsessive thoughts"],
+        correct: 1,
+        unit: "Abnormal Psychology"
+      },
+      
+      // Unit 8: Treatment
+      {
+        question: "Cognitive-Behavioral Therapy (CBT) focuses on:",
+        options: ["Unconscious conflicts", "Changing thoughts and behaviors", "Family dynamics", "Group processes"],
+        correct: 1,
+        unit: "Treatment"
+      },
+      {
+        question: "SSRIs are used to treat depression by:",
+        options: ["Blocking dopamine", "Increasing serotonin availability", "Enhancing GABA", "Reducing norepinephrine"],
+        correct: 1,
+        unit: "Treatment"
+      },
+      
+      // Unit 9: Social Psychology
+      {
+        question: "The Milgram study demonstrated:",
+        options: ["Conformity to group pressure", "Obedience to authority", "Bystander effect", "Social facilitation"],
+        correct: 1,
+        unit: "Social Psychology"
+      },
+      {
+        question: "Fundamental attribution error involves:",
+        options: ["Overestimating situational factors", "Overestimating personality factors", "Self-serving bias", "In-group favoritism"],
+        correct: 1,
+        unit: "Social Psychology"
+      },
+      {
+        question: "The bystander effect occurs when:",
+        options: ["People help more in groups", "People are less likely to help with more people present", "People conform to group norms", "People obey authority figures"],
+        correct: 1,
+        unit: "Social Psychology"
+      },
+      {
+        question: "Social loafing refers to:",
+        options: ["Improved performance with audience", "Reduced effort in group settings", "Following group norms", "Obeying authority"],
+        correct: 1,
+        unit: "Social Psychology"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let userAnswers = [];
+
+    function loadQuestion() {
+      const question = questions[currentQuestion];
+      document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+      document.getElementById('question').innerHTML = `<h3>${question.question}</h3><p><em>Unit: ${question.unit}</em></p>`;
+      
+      const optionsHtml = question.options.map((option, index) => 
+        `<button onclick="selectAnswer(${index})" class="option-btn">${String.fromCharCode(65 + index)}. ${option}</button>`
+      ).join('');
+      
+      document.getElementById('options').innerHTML = optionsHtml;
+      document.getElementById('result').textContent = '';
+      document.getElementById('next-btn').style.display = 'none';
+    }
+
+    function selectAnswer(selectedIndex) {
+      const question = questions[currentQuestion];
+      const optionButtons = document.querySelectorAll('.option-btn');
+      const result = document.getElementById('result');
+      
+      // Disable all buttons
+      optionButtons.forEach(btn => btn.disabled = true);
+      
+      // Store user answer
+      userAnswers[currentQuestion] = selectedIndex;
+      
+      if (selectedIndex === question.correct) {
+        score++;
+        optionButtons[selectedIndex].style.backgroundColor = '#4CAF50';
+        result.innerHTML = '<p style="color: #4CAF50; font-weight: bold;">✅ Correct!</p>';
+      } else {
+        optionButtons[selectedIndex].style.backgroundColor = '#f44336';
+        optionButtons[question.correct].style.backgroundColor = '#4CAF50';
+        result.innerHTML = `<p style="color: #f44336; font-weight: bold;">❌ Incorrect. The correct answer is ${String.fromCharCode(65 + question.correct)}.</p>`;
+      }
+      
+      if (currentQuestion < questions.length - 1) {
+        document.getElementById('next-btn').style.display = 'inline-block';
+      } else {
+        showFinalScore();
+      }
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      }
+    }
+
+    function showFinalScore() {
+      const percentage = Math.round((score / questions.length) * 100);
+      let grade = '';
+      
+      if (percentage >= 90) grade = 'A';
+      else if (percentage >= 80) grade = 'B';
+      else if (percentage >= 70) grade = 'C';
+      else if (percentage >= 60) grade = 'D';
+      else grade = 'F';
+      
+      document.getElementById('quiz-container').innerHTML = `
+        <h2>Quiz Complete! 🎉</h2>
+        <div class="final-score">
+          <h3>Your Score: ${score}/${questions.length} (${percentage}%)</h3>
+          <h3>Grade: ${grade}</h3>
+          <p>${getScoreMessage(percentage)}</p>
+        </div>
+      `;
+      
+      document.getElementById('restart-btn').style.display = 'inline-block';
+    }
+
+    function getScoreMessage(percentage) {
+      if (percentage >= 90) return "Excellent! You're well-prepared for the AP exam!";
+      else if (percentage >= 80) return "Great job! Keep reviewing the concepts you missed.";
+      else if (percentage >= 70) return "Good work! Focus on studying the areas where you struggled.";
+      else if (percentage >= 60) return "Not bad, but you'll need more practice before the AP exam.";
+      else return "Keep studying! Review your notes and try the quiz again.";
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      userAnswers = [];
+      document.getElementById('quiz-container').innerHTML = `
+        <div id="question-counter">Question 1 of 25</div>
+        <div id="question"></div>
+        <div id="options"></div>
+        <button id="next-btn" onclick="nextQuestion()" style="display: none;">Next Question</button>
+        <button id="restart-btn" onclick="restartQuiz()" style="display: none;">Restart Quiz</button>
+      `;
+      document.getElementById('result').textContent = '';
+      loadQuestion();
+    }
+
+    // Load first question when page loads
+    loadQuestion();
+
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      const themeText = document.getElementById('theme-text');
+      
+      body.classList.add('theme-switching');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark';
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+        localStorage.setItem('theme', 'dark');
+      }
+      
+      setTimeout(() => body.classList.remove('theme-switching'), 500);
+    }
+
+    // Load saved theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      const themeText = document.getElementById('theme-text');
+      
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+      }
+    });
+  </script>
+
+  <style>
+    .option-btn {
+      display: block;
+      width: 100%;
+      margin: 0.5em 0;
+      padding: 1em;
+      text-align: left;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: #667eea;
+      transform: translateX(5px);
+    }
+
+    .option-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+
+    #question-counter {
+      background: rgba(102, 126, 234, 0.1);
+      padding: 0.5em 1em;
+      border-radius: 20px;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 1em;
+      text-align: center;
+    }
+
+    .final-score {
+      text-align: center;
+      padding: 2em;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      margin: 1em 0;
+    }
+
+    .final-score h3 {
+      margin: 0.5em 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</body>
+</html>

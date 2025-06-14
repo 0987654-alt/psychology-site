@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Psychology Study Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span>
+    <span id="theme-text">Dark</span>
+  </div>
+  
+  <header>
+    <h1>🧠 Psychology Study Hub</h1>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="notes.html">Notes</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Welcome!</h2>
+    <p>This site was built to help you study core concepts in psychology, from learning theories to brain structures.</p>
+  </main>
+
+  <footer>
+    <p>Created by Roshan Amin</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      const themeText = document.getElementById('theme-text');
+      
+      body.classList.add('theme-switching');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark';
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+        localStorage.setItem('theme', 'dark');
+      }
+      
+      setTimeout(() => body.classList.remove('theme-switching'), 500);
+    }
+
+    // Load saved theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      const themeText = document.getElementById('theme-text');
+      
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+      }
+    });
+  </script>
+</body>
+</html>

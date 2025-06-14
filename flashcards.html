@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Psychology Flashcards</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .flashcard-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .flashcard {
+      width: 250px;
+      height: 150px;
+      background: #ffffff;
+      border: 2px solid #5c6bc0;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      perspective: 1000px;
+      transition: transform 0.3s;
+      position: relative;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .flashcard.flipped {
+      background: #5c6bc0;
+      color: white;
+    }
+
+    .flashcard:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+
+    .unit-header {
+      width: 100%;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #667eea;
+      margin: 2em 0 1em 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .flashcard-controls {
+      text-align: center;
+      margin: 2em 0;
+    }
+
+    .control-btn {
+      margin: 0.5em;
+      padding: 0.8em 1.5em;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .control-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span>
+    <span id="theme-text">Dark</span>
+  </div>
+  
+  <header>
+    <h1>🧠 Psychology Flashcards</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="notes.html">Notes</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>AP Psychology Flashcards</h2>
+      <p>Click on any flashcard to flip it and see the definition! Study all units comprehensively.</p>
+      
+      <div class="flashcard-controls">
+        <button class="control-btn" onclick="flipAll()">Flip All Cards</button>
+        <button class="control-btn" onclick="resetAll()">Reset All Cards</button>
+        <button class="control-btn" onclick="shuffleCards()">Shuffle Cards</button>
+      </div>
+    </div>
+
+    <div id="flashcard-area">
+      <!-- Unit 1: Biological Bases -->
+      <div class="unit-header">Unit 1: Biological Bases of Behavior</div>
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flip(this)" data-term="Neuron" data-definition="Basic building block of the nervous system">Neuron</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Action Potential" data-definition="Electrical signal that travels down the axon">Action Potential</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Synapse" data-definition="Gap between neurons where neurotransmitters are released">Synapse</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Myelin Sheath" data-definition="Fatty tissue that speeds up neural transmission">Myelin Sheath</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Brainstem" data-definition="Controls vital functions (breathing, heart rate)">Brainstem</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Cerebellum" data-definition="Balance, coordination, motor learning">Cerebellum</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Limbic System" data-definition="Emotion, memory, motivation">Limbic System</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Amygdala" data-definition="Fear, aggression, emotional processing">Amygdala</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Hippocampus" data-definition="Memory formation and spatial navigation">Hippocampus</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Hypothalamus" data-definition="Regulates hormones, body temperature, hunger">Hypothalamus</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Thalamus" data-definition="Relay station for sensory information">Thalamus</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Cerebral Cortex" data-definition="Higher-order thinking, consciousness">Cerebral Cortex</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Dopamine" data-definition="Reward, motivation, movement disorders">Dopamine</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Serotonin" data-definition="Mood regulation, sleep, appetite">Serotonin</div>
+        <div class="flashcard" onclick="flip(this)" data-term="GABA" data-definition="Inhibitory neurotransmitter, reduces anxiety">GABA</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Acetylcholine" data-definition="Muscle movement, memory, attention">Acetylcholine</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Norepinephrine" data-definition="Alertness, arousal, fight-or-flight">Norepinephrine</div>
+      </div>
+
+      <!-- Unit 2: Sensation and Perception -->
+      <div class="unit-header">Unit 2: Sensation and Perception</div>
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flip(this)" data-term="Cornea" data-definition="Clear covering that bends light">Cornea</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Pupil" data-definition="Opening that controls light entry">Pupil</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Lens" data-definition="Focuses light on the retina">Lens</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Retina" data-definition="Contains photoreceptors (rods and cones)">Retina</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Rods" data-definition="Detect light/dark, peripheral vision">Rods</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Cones" data-definition="Detect color, central vision">Cones</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Blind Spot" data-definition="Where optic nerve exits retina">Blind Spot</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Frequency" data-definition="Determines pitch in hearing">Frequency</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Amplitude" data-definition="Determines loudness in hearing">Amplitude</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Cochlea" data-definition="Fluid-filled structure that converts sound waves">Cochlea</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Hair Cells" data-definition="Receptors that detect sound vibrations">Hair Cells</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Gestalt Principles" data-definition="How we organize visual information">Gestalt Principles</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Figure-Ground" data-definition="Distinguishing objects from background">Figure-Ground</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Proximity" data-definition="Objects close together are perceived as groups">Proximity</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Similarity" data-definition="Similar objects are grouped together">Similarity</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Closure" data-definition="We complete incomplete figures mentally">Closure</div>
+      </div>
+
+      <!-- Unit 3: Learning -->
+      <div class="unit-header">Unit 3: Learning</div>
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flip(this)" data-term="Classical Conditioning" data-definition="Learning through association - pairing neutral stimulus with reflex">Classical Conditioning</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Ivan Pavlov" data-definition="Psychologist who studied classical conditioning with dogs">Ivan Pavlov</div>
+        <div class="flashcard" onclick="flip(this)" data-term="UCS" data-definition="Unconditioned Stimulus - naturally triggers response">UCS</div>
+        <div class="flashcard" onclick="flip(this)" data-term="UCR" data-definition="Unconditioned Response - natural response to UCS">UCR</div>
+        <div class="flashcard" onclick="flip(this)" data-term="CS" data-definition="Conditioned Stimulus - previously neutral stimulus">CS</div>
+        <div class="flashcard" onclick="flip(this)" data-term="CR" data-definition="Conditioned Response - learned response to CS">CR</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Acquisition" data-definition="Initial learning phase in conditioning">Acquisition</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Extinction" data-definition="Weakening of CR when CS presented alone">Extinction</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Spontaneous Recovery" data-definition="Reappearance of CR after rest period">Spontaneous Recovery</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Generalization" data-definition="Responding to similar stimuli">Generalization</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Discrimination" data-definition="Responding only to specific stimulus">Discrimination</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Operant Conditioning" data-definition="Behavior influenced by consequences (reinforcements/punishments)">Operant Conditioning</div>
+        <div class="flashcard" onclick="flip(this)" data-term="B.F. Skinner" data-definition="Psychologist who studied operant conditioning">B.F. Skinner</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Positive Reinforcement" data-definition="Adding pleasant stimulus to increase behavior">Positive Reinforcement</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Negative Reinforcement" data-definition="Removing unpleasant stimulus to increase behavior">Negative Reinforcement</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Positive Punishment" data-definition="Adding unpleasant stimulus to decrease behavior">Positive Punishment</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Negative Punishment" data-definition="Removing pleasant stimulus to decrease behavior">Negative Punishment</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Variable Ratio" data-definition="Reinforcement after varying numbers of responses">Variable Ratio</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Fixed Interval" data-definition="Reinforcement after set time period">Fixed Interval</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Albert Bandura" data-definition="Psychologist who studied observational learning">Albert Bandura</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Modeling" data-definition="Imitating observed behavior">Modeling</div>
+      </div>
+
+      <!-- Unit 4: Cognitive Psychology -->
+      <div class="unit-header">Unit 4: Cognitive Psychology</div>
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flip(this)" data-term="Encoding" data-definition="Getting information into memory">Encoding</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Storage" data-definition="Retaining information over time">Storage</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Retrieval" data-definition="Getting information out of memory">Retrieval</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Sensory Memory" data-definition="Brief storage of sensory information">Sensory Memory</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Short-term Memory" data-definition="Limited capacity, 15-30 seconds">Short-term Memory</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Working Memory" data-definition="Active processing of information">Working Memory</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Long-term Memory" data-definition="Unlimited capacity, permanent storage">Long-term Memory</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Explicit Memory" data-definition="Conscious recall (episodic, semantic)">Explicit Memory</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Implicit Memory" data-definition="Unconscious memory (procedural, priming)">Implicit Memory</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Algorithm" data-definition="Step-by-step problem-solving procedure">Algorithm</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Heuristic" data-definition="Mental shortcut or rule of thumb">Heuristic</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Availability Heuristic" data-definition="Judging by ease of recall">Availability Heuristic</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Representative Heuristic" data-definition="Judging by similarity to prototype">Representative Heuristic</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Confirmation Bias" data-definition="Seeking information that confirms beliefs">Confirmation Bias</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Functional Fixedness" data-definition="Inability to see new uses for objects">Functional Fixedness</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Phonemes" data-definition="Smallest units of sound">Phonemes</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Morphemes" data-definition="Smallest units of meaning">Morphemes</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Syntax" data-definition="Rules for combining words">Syntax</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Semantics" data-definition="Meaning of words and sentences">Semantics</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Chomsky" data-definition="Proposed Language Acquisition Device (LAD)">Chomsky</div>
+      </div>
+
+      <!-- Unit 5: Developmental Psychology -->
+      <div class="unit-header">Unit 5: Developmental Psychology</div>
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flip(this)" data-term="Sensorimotor Stage" data-definition="(0-2) Learning through senses and motor actions">Sensorimotor Stage</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Preoperational Stage" data-definition="(2-7) Symbolic thinking, egocentrism">Preoperational Stage</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Concrete Operational" data-definition="(7-11) Logical thinking about concrete objects">Concrete Operational</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Formal Operational" data-definition="(11+) Abstract and hypothetical thinking">Formal Operational</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Schema" data-definition="Mental framework for understanding">Schema</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Assimilation" data-definition="Fitting new info into existing schemas">Assimilation</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Accommodation" data-definition="Changing schemas to fit new info">Accommodation</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Trust vs. Mistrust" data-definition="(0-1) Basic trust in caregivers - Erikson">Trust vs. Mistrust</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Autonomy vs. Shame" data-definition="(1-3) Developing independence - Erikson">Autonomy vs. Shame</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Identity vs. Role Confusion" data-definition="(12-18) Developing sense of self - Erikson">Identity vs. Role Confusion</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Secure Attachment" data-definition="Comfortable with closeness and independence">Secure Attachment</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Anxious-Ambivalent" data-definition="Clingy, anxious about relationships">Anxious-Ambivalent</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Avoidant Attachment" data-definition="Uncomfortable with closeness">Avoidant Attachment</div>
+      </div>
+
+      <!-- Unit 6: Personality -->
+      <div class="unit-header">Unit 6: Personality</div>
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flip(this)" data-term="Id" data-definition="Pleasure principle, unconscious desires - Freud">Id</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Ego" data-definition="Reality principle, mediates id and superego - Freud">Ego</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Superego" data-definition="Moral principle, conscience - Freud">Superego</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Defense Mechanisms" data-definition="Unconscious strategies to reduce anxiety">Defense Mechanisms</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Repression" data-definition="Pushing threatening thoughts into unconscious">Repression</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Projection" data-definition="Attributing own feelings to others">Projection</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Displacement" data-definition="Redirecting emotions to safer target">Displacement</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Big Five (OCEAN)" data-definition="Five major personality traits model">Big Five (OCEAN)</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Openness" data-definition="Creativity, imagination, openness to experience">Openness</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Conscientiousness" data-definition="Organization, responsibility, self-discipline">Conscientiousness</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Extraversion" data-definition="Sociability, assertiveness, positive emotions">Extraversion</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Agreeableness" data-definition="Cooperation, trust, empathy">Agreeableness</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Neuroticism" data-definition="Emotional instability, anxiety, moodiness">Neuroticism</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Carl Rogers" data-definition="Self-concept and unconditional positive regard">Carl Rogers</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Abraham Maslow" data-definition="Hierarchy of needs, self-actualization">Abraham Maslow</div>
+      </div>
+
+      <!-- Unit 7: Abnormal Psychology -->
+      <div class="unit-header">Unit 7: Abnormal Psychology</div>
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flip(this)" data-term="Generalized Anxiety Disorder" data-definition="Persistent, excessive worry">Generalized Anxiety Disorder</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Panic Disorder" data-definition="Recurrent panic attacks">Panic Disorder</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Phobias" data-definition="Irrational fear of specific objects/situations">Phobias</div>
+        <div class="flashcard" onclick="flip(this)" data-term="OCD" data-definition="Obsessive thoughts and compulsive behaviors">OCD</div>
+        <div class="flashcard" onclick="flip(this)" data-term="PTSD" data-definition="Following exposure to traumatic events">PTSD</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Major Depression" data-definition="Persistent sadness, loss of interest">Major Depression</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Bipolar Disorder" data-definition="Alternating manic and depressive episodes">Bipolar Disorder</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Positive Symptoms" data-definition="Hallucinations, delusions, disorganized speech">Positive Symptoms</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Negative Symptoms" data-definition="Flat affect, social withdrawal, lack of motivation">Negative Symptoms</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Antisocial Personality" data-definition="Disregard for others' rights">Antisocial Personality</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Borderline Personality" data-definition="Unstable relationships and self-image">Borderline Personality</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Narcissistic Personality" data-definition="Grandiose sense of self-importance">Narcissistic Personality</div>
+      </div>
+
+      <!-- Unit 8: Treatment -->
+      <div class="unit-header">Unit 8: Treatment of Abnormal Behavior</div>
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flip(this)" data-term="Psychoanalysis" data-definition="Uncovering unconscious conflicts">Psychoanalysis</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Cognitive Therapy" data-definition="Changing negative thought patterns">Cognitive Therapy</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Behavioral Therapy" data-definition="Changing maladaptive behaviors">Behavioral Therapy</div>
+        <div class="flashcard" onclick="flip(this)" data-term="CBT" data-definition="Cognitive-Behavioral Therapy - combining cognitive and behavioral">CBT</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Humanistic Therapy" data-definition="Client-centered, unconditional positive regard">Humanistic Therapy</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Group Therapy" data-definition="Treatment in group setting">Group Therapy</div>
+        <div class="flashcard" onclick="flip(this)" data-term="SSRIs" data-definition="Antidepressants that increase serotonin availability">SSRIs</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Benzodiazepines" data-definition="Antianxiety drugs that enhance GABA activity">Benzodiazepines</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Antipsychotics" data-definition="Block dopamine receptors">Antipsychotics</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Lithium" data-definition="Mood stabilizer for bipolar disorder">Lithium</div>
+        <div class="flashcard" onclick="flip(this)" data-term="ECT" data-definition="Electroconvulsive therapy for severe depression">ECT</div>
+      </div>
+
+      <!-- Unit 9: Social Psychology -->
+      <div class="unit-header">Unit 9: Social Psychology</div>
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flip(this)" data-term="Conformity" data-definition="Changing behavior to match group">Conformity</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Asch Conformity" data-definition="Line length study showing group pressure">Asch Conformity</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Obedience" data-definition="Following orders from authority">Obedience</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Milgram Study" data-definition="Shocking learners, 65% obeyed completely">Milgram Study</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Social Facilitation" data-definition="Performance improves with audience">Social Facilitation</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Social Loafing" data-definition="Reduced effort in group settings">Social Loafing</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Groupthink" data-definition="Faulty decision-making in cohesive groups">Groupthink</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Internal Attribution" data-definition="Behavior due to personality/character">Internal Attribution</div>
+        <div class="flashcard" onclick="flip(this)" data-term="External Attribution" data-definition="Behavior due to situation">External Attribution</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Fundamental Attribution Error" data-definition="Overestimating internal factors">Fundamental Attribution Error</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Self-serving Bias" data-definition="Attributing success to internal, failure to external">Self-serving Bias</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Prejudice" data-definition="Negative attitude toward group">Prejudice</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Discrimination" data-definition="Negative behavior toward group">Discrimination</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Stereotype" data-definition="Overgeneralized belief about group">Stereotype</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Bystander Effect" data-definition="Less likely to help with more people present">Bystander Effect</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Diffusion of Responsibility" data-definition="Responsibility spread among group">Diffusion of Responsibility</div>
+        <div class="flashcard" onclick="flip(this)" data-term="Altruism" data-definition="Helping others without expectation of reward">Altruism</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Master AP Psychology with comprehensive flashcards! 🧠</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      const themeText = document.getElementById('theme-text');
+      
+      body.classList.add('theme-switching');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark';
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+        localStorage.setItem('theme', 'dark');
+      }
+      
+      setTimeout(() => body.classList.remove('theme-switching'), 500);
+    }
+
+    // Load saved theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      const themeText = document.getElementById('theme-text');
+      
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+      }
+    });
+
+    function flip(card) {
+      if (card.classList.contains('flipped')) {
+        card.textContent = card.dataset.term;
+      } else {
+        card.textContent = card.dataset.definition;
+      }
+      card.classList.toggle('flipped');
+    }
+
+    function flipAll() {
+      const cards = document.querySelectorAll('.flashcard');
+      cards.forEach(card => {
+        if (!card.classList.contains('flipped')) {
+          card.textContent = card.dataset.definition;
+          card.classList.add('flipped');
+        }
+      });
+    }
+
+    function resetAll() {
+      const cards = document.querySelectorAll('.flashcard');
+      cards.forEach(card => {
+        card.textContent = card.dataset.term;
+        card.classList.remove('flipped');
+      });
+    }
+
+    function shuffleCards() {
+      const containers = document.querySelectorAll('.flashcard-container');
+      containers.forEach(container => {
+        const cards = Array.from(container.children);
+        for (let i = cards.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          container.appendChild(cards[j]);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

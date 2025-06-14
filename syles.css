@@ -1,0 +1,77 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #5c6bc0;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 1em;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  padding: 2em;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin: 1em 0;
+  padding: 1em;
+}
+
+button {
+  margin: 0.5em;
+  padding: 0.6em 1em;
+  background-color: #5c6bc0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: #3f51b5;
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+header.dark-mode,
+nav.dark-mode,
+footer.dark-mode {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+nav.dark-mode a {
+  color: #f1f1f1;
+}
+
+.flashcard.dark-mode {
+  background-color: #2a2a2a;
+  border-color: #888;
+  color: white;
+}
