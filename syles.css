@@ -1,77 +1,117 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: darkblue;
-  color: black;
-  margin: 0;
-  padding: 0;
+/* ===================
+   GLOBAL COLOR VARIABLES
+=================== */
+:root {
+  --main-color: #8B0000;         /* Dark red */
+  --main-color-light: #a30000;   /* Hover version */
+  --text-light: #ffffff;
+  --text-dark: #111111;
+  --bg-light: #ffffff;
+  --bg-dark: #121212;
+  --section-dark: #1e1e1e;
+  --flashcard-dark: #2a2a2a;
 }
 
-header {
-  background-color: #5c6bc0;
-  color: white;
-  padding: 1em;
+/* ===================
+   GENERAL LAYOUT
+=================== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+header, nav, footer {
+  background-color: var(--main-color);
+  color: var(--text-light);
+  padding: 1rem;
   text-align: center;
 }
 
 nav a {
-  margin: 0 1em;
-  color: white;
+  color: var(--text-light);
   text-decoration: none;
+  margin: 0 1rem;
   font-weight: bold;
 }
 
-main {
-  padding: 2em;
+nav a:hover {
+  text-decoration: underline;
 }
 
-.card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  margin: 1em 0;
-  padding: 1em;
-}
-
-button {
-  margin: 0.5em;
-  padding: 0.6em 1em;
-  background-color: #5c6bc0;
-  color: white;
+/* ===================
+   BUTTONS
+=================== */
+button, .btn {
+  background-color: var(--main-color);
+  color: var(--text-light);
   border: none;
-  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #3f51b5;
+button:hover, .btn:hover {
+  background-color: var(--main-color-light);
 }
 
-footer {
-  text-align: center;
-  padding: 1em;
-  background-color: #e0e0e0;
-  color: #555;
+/* ===================
+   FLASHCARDS
+=================== */
+.flashcard {
+  border: 2px solid var(--main-color);
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1rem auto;
+  max-width: 600px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
+/* ===================
+   DARK MODE STYLES
+=================== */
 body.dark-mode {
-  background-color: #121212;
-  color: #f1f1f1;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
 }
 
 header.dark-mode,
 nav.dark-mode,
 footer.dark-mode {
-  background-color: #1e1e1e;
-  color: #f1f1f1;
+  background-color: var(--section-dark);
+  color: var(--text-light);
 }
 
 nav.dark-mode a {
-  color: #f1f1f1;
+  color: var(--text-light);
+}
+
+button.dark-mode, .btn.dark-mode {
+  background-color: var(--main-color-light);
+  color: var(--text-light);
 }
 
 .flashcard.dark-mode {
-  background-color: #2a2a2a;
-  border-color: #888;
+  background-color: var(--flashcard-dark);
+  border-color: #999;
+  color: var(--text-light);
+}
+
+/* ===================
+   DARK MODE TOGGLE BUTTON
+=================== */
+#darkModeToggle {
+  margin-left: 1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--main-color-light);
   color: white;
+  cursor: pointer;
+  font-weight: bold;
 }
